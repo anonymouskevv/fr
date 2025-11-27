@@ -2,338 +2,1708 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <title>Boostly – High Conversion Landing Page</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brand Name | Simple Landing Page</title>
-
   <style>
+    :root {
+      --bg: #050510;
+      --bg-alt: #0b0b1a;
+      --primary: #6a5cff;
+      --primary-soft: rgba(106, 92, 255, 0.18);
+      --accent: #21e6b6;
+      --text: #f9f9ff;
+      --muted: #a0a3c3;
+      --border: #26263d;
+      --danger: #ff4b81;
+      --radius-xl: 26px;
+      --radius-lg: 18px;
+      --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.55);
+      --transition-fast: 0.18s ease-out;
+      --transition-med: 0.24s ease-out;
+      --max-width: 1120px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      background: #050814;
-      color: #f5f5f5;
-      line-height: 1.6;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+      background: radial-gradient(circle at top, #181830 0, #050510 55%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
     }
 
-    a { text-decoration: none; color: inherit; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    header {
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 20px 18px 80px;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+
+    .nav {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(5, 8, 20, 0.95);
-      border-bottom: 1px solid #22263a;
-      padding: 0.75rem 1.5rem;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 16, 0.96),
+        rgba(5, 5, 16, 0.88),
+        transparent
+      );
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
 
-    .logo {
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      font-size: 0.95rem;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 15%, #ffffff, #8a7bff, #151528);
+      box-shadow: 0 0 32px rgba(111, 96, 255, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 10px;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .brand-text-top {
+      font-size: 14px;
       text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--muted);
     }
 
-    nav a {
-      margin-left: 1.25rem;
-      font-size: 0.9rem;
-      opacity: 0.85;
+    .brand-text-main {
+      font-size: 18px;
+      font-weight: 650;
+      letter-spacing: 0.06em;
     }
 
-    nav a:hover {
-      opacity: 1;
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--muted);
     }
 
-    .btn-primary {
-      display: inline-block;
-      padding: 0.7rem 1.3rem;
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       border-radius: 999px;
-      background: #00c16a;
-      color: #050814;
+      transition: width var(--transition-fast);
+    }
+
+    .nav-links a:hover::after {
+      width: 16px;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #ffd6ef 0, #6a5cff 30%, #181830 80%);
+      font-size: 13px;
       font-weight: 600;
-      font-size: 0.9rem;
-      border: none;
+      box-shadow: 0 12px 30px rgba(106, 92, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       cursor: pointer;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast), opacity var(--transition-fast);
     }
 
-    .btn-primary:hover {
-      filter: brightness(1.1);
+    .nav-cta:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 18px 45px rgba(106, 92, 255, 0.7);
+      opacity: 0.96;
     }
 
-    main {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
+    .nav-cta span.dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #21e6b6;
+      box-shadow: 0 0 10px rgba(33, 230, 182, 0.9);
     }
 
-    section {
-      padding: 3rem 0;
-      border-bottom: 1px solid #181c2e;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
-      gap: 2.5rem;
+    .nav-menu-sm {
+      display: none;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      color: var(--muted);
+      gap: 6px;
       align-items: center;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      margin-bottom: 1rem;
+    .nav-menu-sm span.bar {
+      width: 14px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--muted);
+      display: block;
     }
 
-    .hero p {
-      max-width: 32rem;
-      opacity: 0.9;
-      margin-bottom: 1.5rem;
+    .nav-links-sm {
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px 18px 18px;
+      font-size: 14px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(5, 5, 16, 0.96);
+      backdrop-filter: blur(18px);
     }
 
-    .hero-tag {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+    .nav-links-sm a {
+      padding: 4px 0;
+    }
+
+    .nav-links-sm .nav-cta {
+      width: fit-content;
+      margin-top: 4px;
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      padding-top: 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      align-items: center;
+      gap: 32px;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 11px 4px 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: radial-gradient(circle at 0 0, #3b2cff33, transparent 55%);
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-pill-tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 16, 40, 0.9);
+      border: 1px solid rgba(121, 110, 255, 0.7);
+      font-size: 11px;
       text-transform: uppercase;
-      color: #7dd3fc;
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.16em;
+      color: #d3ceff;
     }
 
-    .hero-card {
-      background: radial-gradient(circle at top left, #1f2937, #020617);
-      border-radius: 1.25rem;
-      padding: 1.75rem;
-      border: 1px solid #1f2937;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(33, 230, 182, 0.9);
     }
 
-    .hero-card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.05rem;
+    .hero-heading {
+      font-size: clamp(2.2rem, 4vw, 3.1rem);
+      line-height: 1.02;
+      letter-spacing: 0.02em;
+      margin-bottom: 14px;
     }
 
-    .hero-card p {
-      font-size: 0.9rem;
-      opacity: 0.9;
+    .hero-heading span.gradient {
+      background: linear-gradient(120deg, #ffffff, #b4acff, #21e6b6);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .metric {
+      min-width: 120px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: radial-gradient(circle at top left, #6a5cff22, transparent 70%);
+    }
+
+    .metric-top {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .metric-main {
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .metric-main span.badge {
+      font-size: 11px;
+      margin-left: 6px;
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(33, 230, 182, 0.4);
+      color: var(--accent);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0 0, #ffe1ff 0, #6a5cff 30%, #1a183a 90%);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      cursor: pointer;
+      box-shadow: 0 18px 45px rgba(106, 92, 255, 0.7);
+      transition: transform var(--transition-med),
+        box-shadow var(--transition-med), filter var(--transition-med);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      filter: brightness(1.05);
+      box-shadow: 0 26px 70px rgba(106, 92, 255, 0.9);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      font-size: 13px;
+      color: var(--muted);
+      background: rgba(12, 13, 40, 0.85);
+      cursor: pointer;
+      transition: background var(--transition-fast), border var(--transition-fast);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(21, 22, 60, 0.95);
+      border-style: solid;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-note span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* HERO RIGHT PREVIEW */
+
+    .hero-preview-wrap {
+      position: relative;
+    }
+
+    .hero-card-main {
+      position: relative;
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, #2d2855, #050510 60%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 16px 14px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .hero-dots {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .hero-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .hero-dot:nth-child(1) {
+      background: #ff5f57;
+    }
+
+    .hero-dot:nth-child(2) {
+      background: #febc2e;
+    }
+
+    .hero-dot:nth-child(3) {
+      background: #28c840;
+    }
+
+    .hero-url {
+      max-width: 200px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-browser-tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(12, 13, 40, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 11px;
+    }
+
+    .hero-landing {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 15px 15px;
+      background: radial-gradient(circle at top, #181731, #050510 75%);
+    }
+
+    .hero-landing-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 14px;
+      align-items: center;
+    }
+
+    .hero-chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-cta-mini {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      background: linear-gradient(120deg, #6a5cff, #21e6b6);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hero-landing-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .hero-landing-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-landing-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .hero-landing-buttons button {
+      all: unset;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(12, 12, 35, 0.9);
+    }
+
+    .hero-landing-buttons button.primary {
+      background: radial-gradient(circle at 0 0, #ffe1ff 0, #6a5cff 50%);
+    }
+
+    .hero-landing-stripe {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-landing-stripe span.label {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 10px;
+      color: #d3ceff;
+    }
+
+    .hero-landing-stripe span.highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hero-landing-stripe .avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 2px solid #050510;
+      background: linear-gradient(135deg, #ffe8b3, #ff4b81);
+      margin-left: -6px;
+    }
+
+    .avatar:first-child {
+      margin-left: 0;
+    }
+
+    .hero-side-tag {
+      position: absolute;
+      right: -10px;
+      bottom: -8px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(5, 5, 16, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-side-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(33, 230, 182, 0.9);
+    }
+
+    /* ---------------- SECTION WRAPPER ---------------- */
+
+    .section {
+      margin-top: 52px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 4px;
     }
 
     .section-title {
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
 
-    .section-subtitle {
-      font-size: 0.95rem;
-      opacity: 0.85;
-      margin-bottom: 1.75rem;
+    .section-title span {
+      color: #c3beff;
     }
 
-    .grid-3 {
+    .section-sub {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 380px;
+    }
+
+    /* ---------------- FEATURES ---------------- */
+
+    .feature-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
+      gap: 14px;
     }
 
-    .card {
-      background: #020617;
-      border-radius: 0.9rem;
-      padding: 1.25rem 1.3rem;
-      border: 1px solid #1f2937;
-      font-size: 0.9rem;
+    .feature {
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 13px;
+      background: radial-gradient(circle at top left, #222248, #050510 70%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
+    .feature::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, #6a5cff22, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition-med);
     }
 
-    .contact-box {
-      max-width: 480px;
-      background: #020617;
-      border-radius: 1rem;
-      padding: 1.75rem;
-      border: 1px solid #1f2937;
-      font-size: 0.9rem;
+    .feature:hover::after {
+      opacity: 1;
     }
 
-    label {
-      display: block;
-      font-size: 0.8rem;
-      margin-bottom: 0.3rem;
-      opacity: 0.9;
+    .feature-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #ffffff, #8b7bff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      box-shadow: 0 0 18px rgba(138, 123, 255, 0.9);
     }
 
-    input, textarea {
-      width: 100%;
-      padding: 0.6rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #1f2937;
-      background: #020617;
-      color: #f9fafb;
-      font-size: 0.85rem;
-      margin-bottom: 0.8rem;
-      outline: none;
+    .feature-title {
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    input:focus, textarea:focus {
-      border-color: #38bdf8;
+    .feature-body {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 110px;
+    .feature-tag {
+      margin-top: 2px;
+      font-size: 11px;
+      color: #9ce7cf;
     }
 
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem 2.5rem;
-      font-size: 0.8rem;
-      opacity: 0.7;
-      border-top: 1px solid #111827;
+    /* ---------------- SHOWCASE ---------------- */
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
     }
 
-    @media (max-width: 768px) {
-      header {
+    .showcase-main,
+    .showcase-side {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: radial-gradient(circle at top, #181731, #050510 85%);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    .showcase-main-title {
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .showcase-main-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .chip {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+      background: rgba(10, 10, 35, 0.95);
+    }
+
+    .showcase-preview {
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: radial-gradient(circle at top, #25254a, #050510 70%);
+      padding: 10px 10px 12px;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .showcase-preview-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .showcase-preview-body {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .showcase-tagline {
+      font-size: 11px;
+      margin-bottom: 4px;
+      color: #e2dfff;
+    }
+
+    .showcase-cta-line {
+      font-size: 10px;
+      color: var(--accent);
+    }
+
+    .showcase-side {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stacked-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .stacked-label {
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 9px;
+    }
+
+    /* ---------------- PRICING ---------------- */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .price-card {
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 16px;
+      background: radial-gradient(circle at top left, #28284f, #050510 80%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .price-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .price-tier {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #d3ceff;
+    }
+
+    .price-badge {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(8, 8, 22, 0.9);
+    }
+
+    .price-badge.hot {
+      background: linear-gradient(120deg, #ff8ca8, #ffcc70);
+      color: #1a1120;
+      font-weight: 600;
+      border: none;
+    }
+
+    .price-amount {
+      font-size: 22px;
+      font-weight: 650;
+    }
+
+    .price-amount span {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    .price-body {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .price-list {
+      list-style: none;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .price-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .price-cta {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 0;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(8, 8, 28, 0.99);
+      cursor: pointer;
+      transition: background var(--transition-fast),
+        transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .price-cta.primary {
+      background: radial-gradient(circle at 0 0, #ffe1ff 0, #6a5cff 40%);
+      box-shadow: 0 16px 40px rgba(106, 92, 255, 0.8);
+    }
+
+    .price-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .price-ribbon {
+      position: absolute;
+      right: -36px;
+      top: 10px;
+      transform: rotate(11deg);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffd9f0;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 2px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* ---------------- TESTIMONIALS ---------------- */
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 14px;
+    }
+
+    .testimonial-main,
+    .testimonial-side {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, #1c1c3a, #050510 80%);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .testimonial-quote {
+      font-size: 12px;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .author-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffe8b3, #ff4b81);
+    }
+
+    .author-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .author-name {
+      font-size: 12px;
+      color: #f2efff;
+    }
+
+    .author-role {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .rating-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-top: 8px;
+      font-size: 11px;
+    }
+
+    .stars {
+      font-size: 12px;
+    }
+
+    .testimonial-side-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mini-quote {
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: rgba(7, 7, 24, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+    }
+
+    .mini-quote span.name {
+      color: #e1ddff;
+      font-weight: 500;
+    }
+
+    /* ---------------- FAQ + CTA ---------------- */
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 16px;
+    }
+
+    .faq-list {
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, #181732, #050510 80%);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .faq-item {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-size: 12px;
+      color: #f0eeff;
+      margin-bottom: 4px;
+    }
+
+    .faq-a {
+      font-size: 11px;
+    }
+
+    .cta-panel {
+      border-radius: var(--radius-lg);
+      padding: 16px 14px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at 0 0, #6a5cff33, #050510 70%);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .cta-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #d3ceff;
+      margin-bottom: 4px;
+    }
+
+    .cta-title {
+      font-size: 18px;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .cta-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cta-kpi {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .cta-kpi span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 52px;
+      padding-top: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      opacity: 0.8;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    /* ---------------- RESPONSIVE ---------------- */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-preview-wrap {
+        order: -1;
+      }
+      .section {
+        margin-top: 42px;
+      }
+      .feature-grid,
+      .pricing-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .testimonials-grid,
+      .showcase-grid,
+      .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .cta-panel {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-menu-sm {
+        display: inline-flex;
+      }
+      .shell {
+        padding-inline: 16px;
+      }
+      .section-header {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
       }
-
-      nav {
-        display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+      .feature-grid,
+      .pricing-grid {
+        grid-template-columns: minmax(0, 1fr);
       }
+    }
 
-      nav a {
-        margin: 0 1rem 0.25rem 0;
+    @media (max-width: 480px) {
+      .hero-heading {
+        font-size: 1.9rem;
       }
-
-      .hero {
-        grid-template-columns: 1fr;
+      .hero-sub {
+        font-size: 14px;
       }
-
-      .grid-3 {
-        grid-template-columns: 1fr;
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-ghost {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="brand-logo"></div>
+          <div>
+            <div class="brand-text-top">Conversion Studio</div>
+            <div class="brand-text-main">BOOSTLY</div>
+          </div>
+        </div>
 
-<header>
-  <div class="logo">BRAND NAME</div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+        <nav class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+          <button class="nav-cta" onclick="scrollToId('cta')">
+            <span class="dot"></span>
+            <span>Get Your Landing Page</span>
+          </button>
+        </nav>
 
-<main>
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div>
-      <div class="hero-tag">Simple. Clean. Fast.</div>
-      <h1>Landing page that actually looks professional.</h1>
-      <p>
-        I build minimalist one-page websites for creators, freelancers and small
-        businesses. No bloated code, no confusion — just a clean page that
-        explains who you are and what you do.
-      </p>
-      <a href="#contact" class="btn-primary">Get your website</a>
-    </div>
-
-    <div class="hero-card">
-      <h3>What you get:</h3>
-      <p>✓ Single-page site<br>
-         ✓ Mobile friendly design<br>
-         ✓ Modern layout & colors<br>
-         ✓ Ready to upload anywhere</p>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2 class="section-title">About your website</h2>
-    <p class="section-subtitle">
-      This page is designed as a simple digital visiting card: one clear place
-      where people can see what you offer and how to contact you.
-    </p>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Fast loading</h3>
-        <p>Pure HTML/CSS, no heavy frameworks. Works smoothly even on slow connections.</p>
+        <button class="nav-menu-sm" id="navToggle">
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
       </div>
-      <div class="card">
-        <h3>Easy to edit</h3>
-        <p>You can update text, colors and images later using any basic text editor.</p>
+      <div class="nav-links-sm" id="navMenu">
+        <a href="#features" onclick="closeMenu()">Features</a>
+        <a href="#showcase" onclick="closeMenu()">Showcase</a>
+        <a href="#pricing" onclick="closeMenu()">Pricing</a>
+        <a href="#faq" onclick="closeMenu()">FAQ</a>
+        <button class="nav-cta" onclick="scrollToId('cta'); closeMenu();">
+          <span class="dot"></span>
+          <span>Get Your Landing Page</span>
+        </button>
       </div>
-      <div class="card">
-        <h3>Works everywhere</h3>
-        <p>Host it on GitHub Pages, your own server, or any normal hosting provider.</p>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <h2 class="section-title">What can this page include?</h2>
-    <p class="section-subtitle">
-      I can customize this layout for your brand, service, or portfolio.
-    </p>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Business details</h3>
-        <p>Short intro, services, pricing highlights and social media links.</p>
-      </div>
-      <div class="card">
-        <h3>Portfolio section</h3>
-        <p>Project cards, testimonials or screenshots of your work.</p>
-      </div>
-      <div class="card">
-        <h3>Contact options</h3>
-        <p>Buttons to open WhatsApp, email, or any profile you want.</p>
-      </div>
-    </div>
-  </section>
+    <main class="shell">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-pill">
+              <div class="hero-pill-dot"></div>
+              <span class="hero-pill-tag">Landing page as a service</span>
+              <span>Done-for-you web presence in 72h</span>
+            </div>
+            <h1 class="hero-heading">
+              Turn cold clicks into
+              <span class="gradient">obsessed buyers</span> with one page.
+            </h1>
+            <p class="hero-sub">
+              I build frictionless, mobile-first landing pages that make your offer
+              stupidly clear and irresistibly clickable. No bloated themes, just
+              handcrafted HTML that loads in under a second.
+            </p>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2 class="section-title">Contact form</h2>
-    <p class="section-subtitle">
-      This simple form can send an email directly using your mail address
-      (or I can change it to a WhatsApp / external link).
-    </p>
+            <div class="hero-metrics">
+              <div class="metric">
+                <div class="metric-top">Average bounce rate</div>
+                <div class="metric-main">
+                  18% <span class="badge">vs 47% industry</span>
+                </div>
+              </div>
+              <div class="metric">
+                <div class="metric-top">Pages delivered</div>
+                <div class="metric-main">120+ live funnels</div>
+              </div>
+              <div class="metric">
+                <div class="metric-top">Client ROI</div>
+                <div class="metric-main">5.3x avg.</div>
+              </div>
+            </div>
 
-    <div class="contact-box">
-      <form action="mailto:someone@example.com" method="post" enctype="text/plain">
-        <label for="name">Name</label>
-        <input id="name" name="Name" placeholder="Your name" required>
+            <div class="hero-actions">
+              <button class="btn-primary" onclick="scrollToId('pricing')">
+                View packages
+                <span>↗</span>
+              </button>
+              <button class="btn-ghost" onclick="scrollToId('showcase')">
+                See live-style preview
+              </button>
+            </div>
 
-        <label for="email">Email</label>
-        <input id="email" name="Email" type="email" placeholder="you@example.com" required>
+            <div class="hero-note">
+              <span>Zero fluff.</span> You send offer &amp; copy basics, I ship
+              a clean, exportable landing page you fully own.
+            </div>
+          </div>
 
-        <label for="message">Message</label>
-        <textarea id="message" name="Message" placeholder="Tell me what you need"></textarea>
+          <div class="hero-preview-wrap">
+            <div class="hero-card-main">
+              <div class="hero-card-header">
+                <div class="hero-dots">
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                  <span class="hero-dot"></span>
+                </div>
+                <div class="hero-url">https://yourbrand.github.io/offer</div>
+                <div class="hero-browser-tag">Live demo view</div>
+              </div>
 
-        <button type="submit" class="btn-primary">Send message</button>
-      </form>
-      <p style="font-size:0.75rem; opacity:0.7; margin-top:0.6rem;">
-        *This is a simple email form, not a full backend system.
-      </p>
-    </div>
-  </section>
-</main>
+              <div class="hero-landing">
+                <div class="hero-landing-top">
+                  <span class="hero-chip">AI bundle launch • 2025</span>
+                  <span class="hero-cta-mini">Tap to convert</span>
+                </div>
+                <div class="hero-landing-title">
+                  52,000+ reels &amp; shorts assets in one click.
+                </div>
+                <div class="hero-landing-sub">
+                  Plug-and-play hooks, captions, overlays &amp; visuals to keep your
+                  content calendar booked for the next 18 months.
+                </div>
+                <div class="hero-landing-buttons">
+                  <button class="primary">Get instant access</button>
+                  <button>Preview bundle</button>
+                  <button>View license terms</button>
+                </div>
+                <div class="hero-landing-stripe">
+                  <div>
+                    <span class="label">CREATOR STATS</span><br />
+                    <span class="highlight">+38% watch time</span> in the first 7
+                    days on average.
+                  </div>
+                  <div class="avatars">
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+                    <div class="avatar"></div>
+                  </div>
+                </div>
+              </div>
 
-<footer>
-  © 2025 Brand Name. Simple landing page built with HTML &amp; CSS.
-</footer>
+              <div class="hero-side-tag">
+                <span class="hero-side-dot"></span>
+                <span>Built as a single, exportable HTML file.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- FEATURES -->
+      <section class="section" id="features">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Why this over a random theme?</div>
+            <div class="section-title">
+              Ship <span>lean, lethal</span> landing pages.
+            </div>
+          </div>
+          <p class="section-sub">
+            Instead of fighting bloated page builders, you get a handcrafted page
+            with clean code, no subscriptions, and full control over hosting.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-title">Blazingly fast load times</div>
+            <div class="feature-body">
+              No frameworks, no heavy scripts. Pure HTML, CSS &amp; a sprinkle of
+              vanilla JS so your page feels instant even on 3G.
+            </div>
+            <div class="feature-tag">Perfect for paid traffic &amp; cold users.</div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">📱</div>
+            <div class="feature-title">Mobile-first from the start</div>
+            <div class="feature-body">
+              80%+ of traffic is on phones. Layout, buttons, font sizes – everything
+              is dialed in for thumbs, not cursors.
+            </div>
+            <div class="feature-tag">Tested at multiple breakpoints.</div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-title">Conversion-driven layout</div>
+            <div class="feature-body">
+              Sections are structured to answer every “Wait, but…” your visitors
+              have before they bounce or buy.
+            </div>
+            <div class="feature-tag">Storytelling baked into the structure.</div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🧩</div>
+            <div class="feature-title">Reusable for future offers</div>
+            <div class="feature-body">
+              Swap headlines, images &amp; CTAs and the same layout can host a new
+              offer in minutes – no redesign needed.
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">☁️</div>
+            <div class="feature-title">Free GitHub Pages hosting</div>
+            <div class="feature-body">
+              I can set it up so your page lives on a clean URL with $0 monthly
+              hosting costs.
+            </div>
+          </article>
+
+          <article class="feature">
+            <div class="feature-icon">🛡️</div>
+            <div class="feature-title">You own everything</div>
+            <div class="feature-body">
+              No lock-in. You get the full source code, so you can move hosts any
+              time you want.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SHOWCASE -->
+      <section class="section" id="showcase">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Preview the vibes</div>
+            <div class="section-title">
+              Designed to <span>look premium</span> without lag.
+            </div>
+          </div>
+          <p class="section-sub">
+            This is a sample layout showcasing how your real offer could look. Colors,
+            fonts and copy are fully customizable to your brand.
+          </p>
+        </div>
+
+        <div class="showcase-grid">
+          <div class="showcase-main">
+            <div class="showcase-main-title">Hero + offer above the fold</div>
+            <div class="showcase-main-sub">
+              Clear headline, value-packed subtext and bold CTA in the first scroll.
+              No confusion, no distractions.
+            </div>
+            <div class="chip-row">
+              <span class="chip">Hook-first headline</span>
+              <span class="chip">Single CTA focus</span>
+              <span class="chip">Social proof stripe</span>
+            </div>
+
+            <div class="showcase-preview">
+              <div class="showcase-preview-header">
+                <span>Desktop + mobile layout preview</span>
+                <span>Responsive grid • 12 cols</span>
+              </div>
+              <div class="showcase-preview-body">
+                <div>
+                  <div class="showcase-tagline">
+                    “From 0 to fully branded landing page in 72 hours.”
+                  </div>
+                  <div class="showcase-cta-line">
+                    → Button copy focused on outcome, not features.
+                  </div>
+                </div>
+                <div>
+                  <div class="chip-row">
+                    <span class="chip">Hero</span>
+                    <span class="chip">Benefits</span>
+                    <span class="chip">CTA</span>
+                  </div>
+                  <div style="margin-top: 6px">
+                    Above-the-fold stack designed to make your offer obvious at a
+                    glance.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="showcase-side">
+            <div class="stacked-row">
+              <div>
+                <div class="stacked-label">USE CASES</div>
+                <div>Cohort launches, AI bundles, digital products, coaching &amp; more.</div>
+              </div>
+            </div>
+            <div class="stacked-row">
+              <div>
+                <div class="stacked-label">INCLUDED</div>
+                <div>Hero, features, social proof, pricing, FAQ &amp; final CTA.</div>
+              </div>
+            </div>
+            <div class="stacked-row">
+              <div>
+                <div class="stacked-label">EXTRA</div>
+                <div>Optional upsell section, bonuses grid and urgency banner on request.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section" id="pricing">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Pick your level of done-for-you</div>
+            <div class="section-title">
+              Straightforward <span>pricing tiers</span>.
+            </div>
+          </div>
+          <p class="section-sub">
+            Every package includes responsive code and exportable HTML. Higher tiers
+            unlock copy support, GitHub setup and more customization.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-label-row">
+              <div class="price-tier">Basic</div>
+              <div class="price-badge">Starter offer</div>
+            </div>
+            <div class="price-amount">
+              $25 <span>single-scroll landing</span>
+            </div>
+            <div class="price-body">
+              Perfect if you already have your copy and just need it to look clean on
+              a modern page.
+            </div>
+            <ul class="price-list">
+              <li>1 hero section + CTA</li>
+              <li>Up to 4 content sections</li>
+              <li>Responsive mobile layout</li>
+              <li>Delivery in up to 4 days</li>
+            </ul>
+            <button class="price-cta">Start with Basic</button>
+          </article>
+
+          <article class="price-card">
+            <div class="price-ribbon">Most booked</div>
+            <div class="price-label-row">
+              <div class="price-tier">Standard</div>
+              <div class="price-badge hot">Recommended</div>
+            </div>
+            <div class="price-amount">
+              $55 <span>conversion-focused build</span>
+            </div>
+            <div class="price-body">
+              Ideal for creators &amp; digital products. We refine layout to drive
+              clicks on your primary CTA.
+            </div>
+            <ul class="price-list">
+              <li>Full multi-section landing page</li>
+              <li>Basic copy polishing</li>
+              <li>GitHub Pages setup</li>
+              <li>Delivery in up to 3 days</li>
+            </ul>
+            <button class="price-cta primary">Book Standard</button>
+          </article>
+
+          <article class="price-card">
+            <div class="price-label-row">
+              <div class="price-tier">Premium</div>
+              <div class="price-badge">For launches</div>
+            </div>
+            <div class="price-amount">
+              $95 <span>launch-ready funnel page</span>
+            </div>
+            <div class="price-body">
+              For serious launches. We turn your offer into a narrative-driven page
+              with bonus &amp; urgency sections.
+            </div>
+            <ul class="price-list">
+              <li>Everything in Standard</li>
+              <li>Extra sections for bonuses &amp; FAQs</li>
+              <li>Two revision rounds</li>
+              <li>Priority delivery in up to 48h</li>
+            </ul>
+            <button class="price-cta">Launch with Premium</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Social proof time</div>
+            <div class="section-title">
+              Trusted by <span>creators &amp; solo founders</span>.
+            </div>
+          </div>
+          <p class="section-sub">
+            Screenshot real client feedback here later. For now, this is placeholder
+            copy showing how it will look in your live demo.
+          </p>
+        </div>
+
+        <div class="testimonials-grid">
+          <article class="testimonial-main">
+            <div class="testimonial-quote">
+              “We swapped our old clunky WordPress sales page for this lean HTML
+              version and our cost-per-purchase dropped by 27% overnight.”
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar"></div>
+              <div class="author-meta">
+                <div class="author-name">Jordan Patel</div>
+                <div class="author-role">Info-product founder • Creator OS</div>
+              </div>
+            </div>
+            <div class="rating-row">
+              <span class="stars">★★★★★</span>
+              <span>4.9/5 across all projects</span>
+            </div>
+          </article>
+
+          <aside class="testimonial-side">
+            <div class="testimonial-side-list">
+              <div class="mini-quote">
+                “Got a custom landing page for my AI reels bundle and it paid for
+                itself in the first day.”
+                <br /><br />
+                <span class="name">— Marina, content entrepreneur</span>
+              </div>
+              <div class="mini-quote">
+                “Zero dev headache. They shipped the page, wired up GitHub Pages and
+                sent everything in a neat folder.”
+                <br /><br />
+                <span class="name">— Arjun, solo SaaS founder</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FAQ + CTA -->
+      <section class="section" id="faq">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">Questions you might already have</div>
+            <div class="section-title">
+              Short <span>FAQ</span>, zero corporate speak.
+            </div>
+          </div>
+          <p class="section-sub">
+            If something’s still unclear after this, just drop your question when
+            ordering. I reply fast and keep it simple.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-q">Do you also write the full copy?</div>
+              <div class="faq-a">
+                Light copy polishing is included in Standard &amp; Premium. If you
+                want full copy from scratch, we can scope that as an add-on.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Where will my landing page be hosted?</div>
+              <div class="faq-a">
+                By default I build in pure HTML/CSS so you can host it anywhere.
+                Standard &amp; Premium include GitHub Pages setup if you want free
+                hosting.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Can you match my brand colors &amp; fonts?</div>
+              <div class="faq-a">
+                Yes. Share your brand guide, logo or reference website and I’ll
+                align the layout to your visual identity.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Will I be able to edit things later?</div>
+              <div class="faq-a">
+                100%. You get clean, commented HTML so you (or your dev) can adjust
+                text, colors, sections and links easily.
+              </div>
+            </div>
+          </div>
+
+          <aside class="cta-panel" id="cta">
+            <div class="cta-label">Next step</div>
+            <div class="cta-title">Ready to ship your landing page?</div>
+            <div class="cta-sub">
+              Click the button below, pick a package and send over your offer
+              details. I’ll handle the layout, structure and deployment.
+            </div>
+            <div class="cta-row">
+              <button class="btn-primary" onclick="scrollToId('pricing')">
+                View packages &amp; book
+              </button>
+              <div class="cta-kpi">
+                Typical turnaround: <span>48–72 hours</span> depending on scope.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div>© 2025 Boostly Landing Studio • All rights reserved.</div>
+        <div class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    function closeMenu() {
+      if (navMenu) navMenu.style.display = "none";
+    }
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        const isVisible = navMenu.style.display === "flex";
+        navMenu.style.display = isVisible ? "none" : "flex";
+      });
+    }
+  </script>
 </body>
 </html>
