@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand Name | Simple Landing Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #050814;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(5, 8, 20, 0.95);
+      border-bottom: 1px solid #22263a;
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      margin-left: 1.25rem;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      background: #00c16a;
+      color: #050814;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid #181c2e;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 32rem;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #7dd3fc;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      border: 1px solid #1f2937;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    .hero-card p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      margin-bottom: 1.75rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #020617;
+      border-radius: 0.9rem;
+      padding: 1.25rem 1.3rem;
+      border: 1px solid #1f2937;
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-box {
+      max-width: 480px;
+      background: #020617;
+      border-radius: 1rem;
+      padding: 1.75rem;
+      border: 1px solid #1f2937;
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #1f2937;
+      background: #020617;
+      color: #f9fafb;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #38bdf8;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      border-top: 1px solid #111827;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+
+      nav {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin: 0 1rem 0.25rem 0;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BRAND NAME</div>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div>
+      <div class="hero-tag">Simple. Clean. Fast.</div>
+      <h1>Landing page that actually looks professional.</h1>
+      <p>
+        I build minimalist one-page websites for creators, freelancers and small
+        businesses. No bloated code, no confusion — just a clean page that
+        explains who you are and what you do.
+      </p>
+      <a href="#contact" class="btn-primary">Get your website</a>
+    </div>
+
+    <div class="hero-card">
+      <h3>What you get:</h3>
+      <p>✓ Single-page site<br>
+         ✓ Mobile friendly design<br>
+         ✓ Modern layout & colors<br>
+         ✓ Ready to upload anywhere</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About your website</h2>
+    <p class="section-subtitle">
+      This page is designed as a simple digital visiting card: one clear place
+      where people can see what you offer and how to contact you.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Fast loading</h3>
+        <p>Pure HTML/CSS, no heavy frameworks. Works smoothly even on slow connections.</p>
+      </div>
+      <div class="card">
+        <h3>Easy to edit</h3>
+        <p>You can update text, colors and images later using any basic text editor.</p>
+      </div>
+      <div class="card">
+        <h3>Works everywhere</h3>
+        <p>Host it on GitHub Pages, your own server, or any normal hosting provider.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2 class="section-title">What can this page include?</h2>
+    <p class="section-subtitle">
+      I can customize this layout for your brand, service, or portfolio.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <h3>Business details</h3>
+        <p>Short intro, services, pricing highlights and social media links.</p>
+      </div>
+      <div class="card">
+        <h3>Portfolio section</h3>
+        <p>Project cards, testimonials or screenshots of your work.</p>
+      </div>
+      <div class="card">
+        <h3>Contact options</h3>
+        <p>Buttons to open WhatsApp, email, or any profile you want.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact form</h2>
+    <p class="section-subtitle">
+      This simple form can send an email directly using your mail address
+      (or I can change it to a WhatsApp / external link).
+    </p>
+
+    <div class="contact-box">
+      <form action="mailto:someone@example.com" method="post" enctype="text/plain">
+        <label for="name">Name</label>
+        <input id="name" name="Name" placeholder="Your name" required>
+
+        <label for="email">Email</label>
+        <input id="email" name="Email" type="email" placeholder="you@example.com" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="Message" placeholder="Tell me what you need"></textarea>
+
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+      <p style="font-size:0.75rem; opacity:0.7; margin-top:0.6rem;">
+        *This is a simple email form, not a full backend system.
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2025 Brand Name. Simple landing page built with HTML &amp; CSS.
+</footer>
+
+</body>
+</html>
